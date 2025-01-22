@@ -1,9 +1,18 @@
-
+:root {
+        --primary-color: #4c81b3;
+        --secondary-color: #f2f2f2;
+        --tertiary-color: #fff;
+        --error-color: #f53a2d;
+        --success-color: #4CAF50;
+        --line-color: #ccc;
+        --font-general-color: #474747;
+    }
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    color: var(--font-general-color);
 }
 
 body {
@@ -15,7 +24,102 @@ body {
 
 .mainContainer {
     display: grid;
-    grid-template-rows: 500px;
+    grid-template-rows: 700px;
     width: 500px;
     min-width: 300px;
+    align-items: stretch;
+    justify-items: center;
 }
+
+form {
+    background: var(--secondary-color);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Labels */
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Inputs */
+  input[type="email"],
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--tertiary-color);
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: var(--success-color);
+    outline: none;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Fieldset */
+  fieldset {
+    border: 1px solid var(--line-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  legend {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0 5px;
+    color: var(--primary-color);
+  }
+  
+  /* Button */
+  button[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--success-color);
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    form {
+      padding: 15px 20px;
+    }
+  
+    input[type="email"],
+    input[type="text"],
+    input[type="password"],
+    select {
+      font-size: 0.9rem;
+    }
+  
+    button[type="submit"] {
+      font-size: 0.9rem;
+    }
+  }
