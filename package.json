@@ -1,0 +1,51 @@
+{
+  "name": "form-validation",
+  "version": "1.0.0",
+  "description": "Practica de validacion de un formulario con Javascript",
+  "main": "index.js",
+  "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "webpack.common.js",
+        "webpack.dev.js",
+        "webpack.prod.js",
+        "src/*"
+    ],
+  "scripts": {
+        "build": "webpack --config webpack.prod.js",
+        "dev": "webpack serve --config webpack.dev.js",
+        "deploy": "git subtree push --prefix dist origin gh-pages",
+        "linter": "standard --fix"
+    },
+  "keywords": ["formulario", "validacion", "Interactiva", "useless",
+        "javascript",
+        "html",
+        "css"],
+  "author": "David Rosales",
+  "license": "MIT",
+  "devDependencies": {
+        "css-loader": "^7.1.2",
+        "html-loader": "^5.1.0",
+        "html-webpack-plugin": "^5.6.0",
+        "standard": "^17.1.2",
+        "style-loader": "^4.0.0",
+        "webpack": "^5.94.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^5.0.4",
+        "webpack-merge": "^5.8.0"
+    },
+    "eslintConfig": {
+        "extends": "./node_modules/standard/eslintrc.json",
+        "rules": {
+            "prefer-const": "off",
+            "quotes": [
+                "error",
+                "single",
+                {
+                    "allowTemplateLiterals": true
+                }
+            ]
+        }
+    }
+}
