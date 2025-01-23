@@ -1,5 +1,6 @@
 import { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm } from '../validate/formValidate.js'
 import { emailInputFunction } from '../components/emailComponent.js'
+import { fieldSetComponent } from '../components/fieldSetComponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -17,10 +18,7 @@ function createForm () {
   form.appendChild(emailMessage)
 
   // Fieldset para país y código postal
-  const fieldsetCountry = document.createElement('fieldset')
-  const legendCountry = document.createElement('legend')
-  legendCountry.textContent = 'País y Código Postal'
-  fieldsetCountry.appendChild(legendCountry)
+  const { fieldsetCountry } = fieldSetComponent('País y código postal')
 
   // Select para los países
   const countryLabel = document.createElement('label')
