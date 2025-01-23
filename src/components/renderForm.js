@@ -2,6 +2,7 @@ import { validateEmail, validateOptionInputs, validatePostalCode, validatePasswo
 import { emailInputFunction } from '../components/emailComponent.js'
 import { fieldSetComponent } from '../components/fieldSetComponent.js'
 import { selectElementFunction } from '../components/selectComponent.js'
+import { postalCodeInputFunction } from '../components/postalCodeComponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -25,23 +26,7 @@ function createForm () {
   const { countryLabel, countrySelect, countryMessage } = selectElementFunction(['Argentina', 'Brasil', 'Chile', 'Colombia', 'Uruguay'], 'Seleccione un país')
 
   // Input para el código postal
-  const postalLabel = document.createElement('label')
-  postalLabel.setAttribute('for', 'postalCode')
-  postalLabel.textContent = 'Código Postal:'
-
-  const postalInput = document.createElement('input')
-  postalInput.id = 'postalCode'
-  postalInput.className = 'postalCode'
-  postalInput.setAttribute('type', 'text')
-  postalInput.setAttribute('name', 'postalCode')
-  postalInput.setAttribute('required', true)
-  postalInput.setAttribute('minlength', '4')
-  postalInput.setAttribute('maxlength', '6')
-
-  const postalMessage = document.createElement('span')
-  postalMessage.id = 'postalMessage'
-  postalMessage.className = 'message'
-  postalMessage.textContent = 'Mensaje'
+  const { postalLabel, postalInput, postalMessage } = postalCodeInputFunction()
 
   fieldsetCountry.appendChild(countryLabel)
   fieldsetCountry.appendChild(countrySelect)
