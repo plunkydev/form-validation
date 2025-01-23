@@ -1,5 +1,5 @@
 import { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm } from '../validate/formValidate.js'
-
+import { emailInputFunction } from '../components/emailComponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -11,22 +11,7 @@ function createForm () {
   form.setAttribute('novalidate', true)
 
   // Input para el email
-  const emailLabel = document.createElement('label')
-  emailLabel.setAttribute('for', 'email')
-  emailLabel.textContent = 'Email:'
-
-  const emailInput = document.createElement('input')
-  emailInput.id = 'email'
-  emailInput.className = 'email'
-  emailInput.setAttribute('type', 'email')
-  emailInput.setAttribute('name', 'email')
-  emailInput.setAttribute('required', true)
-
-  const emailMessage = document.createElement('span')
-  emailMessage.id = 'emailMessage'
-  emailMessage.className = 'message'
-  emailMessage.textContent = 'Mensaje'
-
+  const { emailLabel, emailInput, emailMessage } = emailInputFunction()
   form.appendChild(emailLabel)
   form.appendChild(emailInput)
   form.appendChild(emailMessage)
