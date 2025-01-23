@@ -21,15 +21,12 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 .mainContainer {
-    display: grid;
-    grid-template-rows: 700px;
-    width: 500px;
-    min-width: 300px;
-    align-items: stretch;
-    justify-items: center;
+    max-width: 500px;
+    width: 100%;
 }
+
+/* Form */
 
 form {
     background: var(--secondary-color);
@@ -40,12 +37,6 @@ form {
     width: 100%;
   }
   
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  
   /* Labels */
   label {
     font-weight: bold;
@@ -54,10 +45,11 @@ form {
   }
   
   /* Inputs */
-  input[type="email"],
-  input[type="text"],
-  input[type="password"],
-  select {
+  .email,
+  .postalCode,
+  .password,
+  .confirm-password,
+  .country {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -67,13 +59,66 @@ form {
     background: var(--tertiary-color);
   }
   
-  input:focus,
-  select:focus {
+  .email:focus,
+  .country:focus,
+  .postalCode:focus,
+  .password:focus,
+  .confirm-password:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 4px var(--primary-color);
+  }
+
+  .borderError {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--error-color) !important;
+    box-shadow: 0 0 4px var(--error-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--tertiary-color);
+  }
+
+  .borderError:focus {
+    border-color: var(--error-color);
+    outline: none;
+    box-shadow: 0 0 4px var(--error-color);
+  }
+
+  .borderSuccess:focus {
     border-color: var(--success-color);
     outline: none;
-    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 0 4px var(--success-color);
+  }
+
+  .borderSuccess {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--success-color);
+    box-shadow: 0 0 4px var(--success-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--tertiary-color);
+  }
+
+
+  .messageError {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+
+  .messageSuccess {
+    color: var(--success-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
   }
   
+  .message {
+    color: transparent;
+  }
   /* Fieldset */
   fieldset {
     border: 1px solid var(--line-color);
@@ -106,20 +151,3 @@ form {
     background-color: var(--success-color);
   }
   
-  /* Responsive */
-  @media (max-width: 600px) {
-    form {
-      padding: 15px 20px;
-    }
-  
-    input[type="email"],
-    input[type="text"],
-    input[type="password"],
-    select {
-      font-size: 0.9rem;
-    }
-  
-    button[type="submit"] {
-      font-size: 0.9rem;
-    }
-  }
