@@ -1,6 +1,7 @@
 import { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm } from '../validate/formValidate.js'
 import { emailInputFunction } from '../components/emailComponent.js'
 import { fieldSetComponent } from '../components/fieldSetComponent.js'
+import { selectElementFunction } from '../components/selectComponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -21,36 +22,7 @@ function createForm () {
   const { fieldsetCountry } = fieldSetComponent('País y código postal')
 
   // Select para los países
-  const countryLabel = document.createElement('label')
-  countryLabel.setAttribute('for', 'country')
-  countryLabel.textContent = 'País:'
-
-  const countrySelect = document.createElement('select')
-  countrySelect.id = 'country'
-  countrySelect.className = 'country'
-  countrySelect.setAttribute('name', 'country')
-  countrySelect.setAttribute('required', true)
-
-  // Agregar una opción por defecto como placeholder
-  const placeholderOption = document.createElement('option')
-  placeholderOption.setAttribute('value', '')
-  placeholderOption.setAttribute('disabled', true)
-  placeholderOption.setAttribute('selected', true)
-  placeholderOption.textContent = 'Seleccione un país'
-  countrySelect.appendChild(placeholderOption);
-
-  // Agregar las opciones de países
-  ['Colombia', 'Venezuela', 'Ecuador', 'Perú', 'Chile'].forEach(country => {
-    const option = document.createElement('option')
-    option.setAttribute('value', country.toLowerCase())
-    option.textContent = country
-    countrySelect.appendChild(option)
-  })
-
-  const countryMessage = document.createElement('span')
-  countryMessage.id = 'countryMessage'
-  countryMessage.className = 'message'
-  countryMessage.textContent = 'Debe seleccionar un país'
+  const { countryLabel, countrySelect, countryMessage } = selectElementFunction(['Argentina', 'Brasil', 'Chile', 'Colombia', 'Uruguay'], 'Seleccione un país')
 
   // Input para el código postal
   const postalLabel = document.createElement('label')
