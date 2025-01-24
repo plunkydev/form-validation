@@ -1,7 +1,7 @@
 export const fieldSetComponent = (placeholder = '') => {
-  const fieldsetCountry = document.createElement('fieldset')
-  const legendCountry = document.createElement('legend')
-  legendCountry.textContent = placeholder
-  fieldsetCountry.appendChild(legendCountry)
-  return { fieldsetCountry }
+  const fieldset = document.createElement('fieldset')
+  const legend = document.createElement('legend')
+  legend.textContent = placeholder
+  fieldset.appendChild(legend)
+  return { fieldset }
 }

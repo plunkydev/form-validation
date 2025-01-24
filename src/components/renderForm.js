@@ -20,7 +20,7 @@ function createForm () {
   form.appendChild(emailMessage)
 
   // Fieldset para país y código postal
-  const { fieldsetCountry } = fieldSetComponent('País y código postal')
+  const { fieldset: fieldsetCountry } = fieldSetComponent('País y código postal')
 
   // Select para los países
   const { countryLabel, countrySelect, countryMessage } = selectElementFunction(['Argentina', 'Brasil', 'Chile', 'Colombia', 'Uruguay'], 'Seleccione un país')
@@ -37,10 +37,7 @@ function createForm () {
   form.appendChild(fieldsetCountry)
 
   // Fieldset para contraseña
-  const fieldsetPassword = document.createElement('fieldset')
-  const legendPassword = document.createElement('legend')
-  legendPassword.textContent = 'Contraseña'
-  fieldsetPassword.appendChild(legendPassword)
+  const { fieldset: fieldsetPassword } = fieldSetComponent('Contraseña')
 
   // Input para la contraseña
   const passwordLabel = document.createElement('label')
