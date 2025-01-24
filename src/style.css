@@ -135,10 +135,12 @@ form {
   }
   
   /* Button */
-  button[type="submit"] {
+  .btn-submit,
+  .btn-reset {
     background-color: var(--primary-color);
     color: var(--tertiary-color);
     padding: 10px 15px;
+    margin-top: 15px;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
@@ -147,7 +149,11 @@ form {
     transition: background-color 0.3s ease;
   }
   
-  button[type="submit"]:hover {
+  .btn-submit:hover {
     background-color: var(--success-color);
+  }
+
+  .btn-reset:hover {
+    background-color: var(--error-color);
   }
   
