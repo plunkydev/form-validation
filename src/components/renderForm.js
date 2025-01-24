@@ -3,6 +3,7 @@ import { emailInputFunction } from '../components/emailComponent.js'
 import { fieldSetComponent } from '../components/fieldSetComponent.js'
 import { selectElementFunction } from '../components/selectComponent.js'
 import { postalCodeInputFunction } from '../components/postalCodeComponent.js'
+import { passwordInputFunction } from '../components/passwordComponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -40,22 +41,7 @@ function createForm () {
   const { fieldset: fieldsetPassword } = fieldSetComponent('Contraseña')
 
   // Input para la contraseña
-  const passwordLabel = document.createElement('label')
-  passwordLabel.setAttribute('for', 'password')
-  passwordLabel.textContent = 'Contraseña:'
-
-  const passwordInput = document.createElement('input')
-  passwordInput.id = 'password'
-  passwordInput.className = 'password'
-  passwordInput.setAttribute('type', 'password')
-  passwordInput.setAttribute('name', 'password')
-  passwordInput.setAttribute('required', true)
-  passwordInput.setAttribute('minlength', '8')
-
-  const passwordMessage = document.createElement('span')
-  passwordMessage.id = 'passwordMessage'
-  passwordMessage.className = 'message'
-  passwordMessage.textContent = 'La contraseña debe tener mayusculas, minusculas, numeros y al menos 8 caracteres'
+  const { passwordLabel, passwordInput, passwordMessage } = passwordInputFunction()
 
   // Input para confirmar contraseña
   const confirmLabel = document.createElement('label')
