@@ -17,9 +17,6 @@ function createForm () {
 
   // Input para el email
   const { emailLabel, emailInput, emailMessage } = emailInputFunction()
-  form.appendChild(emailLabel)
-  form.appendChild(emailInput)
-  form.appendChild(emailMessage)
 
   // Fieldset para país y código postal
   const { fieldset: fieldsetCountry } = fieldSetComponent('País y código postal')
@@ -30,13 +27,7 @@ function createForm () {
   // Input para el código postal
   const { postalLabel, postalInput, postalMessage } = postalCodeInputFunction()
 
-  fieldsetCountry.appendChild(countryLabel)
-  fieldsetCountry.appendChild(countrySelect)
-  fieldsetCountry.appendChild(countryMessage)
-  fieldsetCountry.appendChild(postalLabel)
-  fieldsetCountry.appendChild(postalInput)
-  fieldsetCountry.appendChild(postalMessage)
-  form.appendChild(fieldsetCountry)
+  fieldsetCountry.append(countryLabel, countrySelect, countryMessage, postalLabel, postalInput, postalMessage)
 
   // Fieldset para contraseña
   const { fieldset: fieldsetPassword } = fieldSetComponent('Contraseña')
@@ -47,20 +38,13 @@ function createForm () {
   // Input para confirmar contraseña
   const { confirmLabel, confirmInput, confirmMessage } = passwordConfirmInputFunction()
 
-  fieldsetPassword.appendChild(passwordLabel)
-  fieldsetPassword.appendChild(passwordInput)
-  fieldsetPassword.appendChild(passwordMessage)
-  fieldsetPassword.appendChild(confirmLabel)
-  fieldsetPassword.appendChild(confirmInput)
-  fieldsetPassword.appendChild(confirmMessage)
-  form.appendChild(fieldsetPassword)
+  fieldsetPassword.append(passwordLabel, passwordInput, passwordMessage, confirmLabel, confirmInput, confirmMessage)
 
   // Botón de enviar
   const submitButton = document.createElement('button')
   submitButton.type = 'submit'
   submitButton.className = 'btn-submit'
   submitButton.textContent = 'Enviar'
-  form.appendChild(submitButton)
 
   // Agregar validación en tiempo real-------------------------------------------------------------------------------------------------------------
 
@@ -93,6 +77,8 @@ function createForm () {
   postalInput.addEventListener('input', () => {
     validatePostalCode(postalInput, postalMessage, 'postalCode')
   })
+
+  form.append(emailLabel, emailInput, emailMessage, fieldsetCountry, fieldsetPassword, submitButton)
 
   // Retornar el formulario
   return form
