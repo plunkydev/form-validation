@@ -103,17 +103,41 @@ form {
     background: var(--tertiary-color);
   }
 
+  /* Messages */
 
-  .messageError {
-    color: var(--error-color);
+  .floating-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--tertiary-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--font-general-color);
+    max-width: 500px;
+    min-width: 300px;
+    width: 500px;
+    text-align: center;
+    height: 150px;
+  }
+  
+
+  .messageError,
+  .messageSuccess {
     font-size: 0.8rem;
     margin-top: 5px;
   }
 
+  .messageError {
+    color: var(--error-color);
+  }
+
   .messageSuccess {
     color: var(--success-color);
-    font-size: 0.8rem;
-    margin-top: 5px;
   }
   
   .message {
