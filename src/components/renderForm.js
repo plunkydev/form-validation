@@ -5,6 +5,8 @@ import { selectElementFunction } from '../components/selectComponent.js'
 import { postalCodeInputFunction } from '../components/postalCodeComponent.js'
 import { passwordInputFunction } from '../components/passwordComponent.js'
 import { passwordConfirmInputFunction } from '../components/passwordConfirmConponent.js'
+import { button } from '../components/buttonComponent.js'
+
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -41,10 +43,25 @@ function createForm () {
   fieldsetPassword.append(passwordLabel, passwordInput, passwordMessage, confirmLabel, confirmInput, confirmMessage)
 
   // Botón de enviar
-  const submitButton = document.createElement('button')
-  submitButton.type = 'submit'
-  submitButton.className = 'btn-submit'
-  submitButton.textContent = 'Enviar'
+  const { button: submitButton } = button('submit', 'btn-submit', 'Enviar')
+  const { button: resetButton } = button('reset', 'btn-reset', 'Limpiar')
+
+  resetButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    form.reset()
+    validateEmail(emailInput, emailMessage, 'email')
+    const countryMessage = document.getElementById('countryMessage')
+    countryMessage.textContent = 'Seleccione un País'
+    countryMessage.classList.remove('message', 'messageSuccess', 'messageError')
+    countryMessage.classList.add('message')
+    const countrySelect = document.getElementById('country')
+    countrySelect.value = 'Seleccione un país'
+    countrySelect.classList.remove('borderError', 'borderSuccess', 'country')
+    countrySelect.classList.add('country')
+    validatePassword(passwordInput, passwordMessage, 'password')
+    validatePostalCode(postalInput, postalMessage, 'postalCode')
+    validatePasswordConfirm(confirmInput, passwordInput, confirmMessage, 'confirm-password')
+  })
 
   // Agregar validación en tiempo real-------------------------------------------------------------------------------------------------------------
 
@@ -56,15 +73,15 @@ function createForm () {
     validateEmail(emailInput, emailMessage, 'email')
   })
 
-  function validateCountrySelection () {
-    validateOptionInputs(countrySelect, countryMessage, 'country')
-  }
-
   // Validación al cambiar la selección
-  countrySelect.addEventListener('change', validateCountrySelection)
+  countrySelect.addEventListener('change', () => {
+    validateOptionInputs(countrySelect, countryMessage, 'country')
+  })
 
   // Validación al salir del campo si no se seleccionó nada
-  countrySelect.addEventListener('blur', validateCountrySelection)
+  countrySelect.addEventListener('blur', () => {
+    validateOptionInputs(countrySelect, countryMessage, 'country')
+  })
 
   passwordInput.addEventListener('input', () => {
     validatePassword(passwordInput, passwordMessage, 'password')
@@ -78,7 +95,7 @@ function createForm () {
     validatePostalCode(postalInput, postalMessage, 'postalCode')
   })
 
-  form.append(emailLabel, emailInput, emailMessage, fieldsetCountry, fieldsetPassword, submitButton)
+  form.append(emailLabel, emailInput, emailMessage, fieldsetCountry, fieldsetPassword, resetButton, submitButton)
 
   // Retornar el formulario
   return form
