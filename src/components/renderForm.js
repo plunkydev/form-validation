@@ -4,6 +4,7 @@ import { fieldSetComponent } from '../components/fieldSetComponent.js'
 import { selectElementFunction } from '../components/selectComponent.js'
 import { postalCodeInputFunction } from '../components/postalCodeComponent.js'
 import { passwordInputFunction } from '../components/passwordComponent.js'
+import { passwordConfirmInputFunction } from '../components/passwordConfirmConponent.js'
 function createForm () {
   // Crear el formulario
   const form = document.createElement('form')
@@ -44,21 +45,7 @@ function createForm () {
   const { passwordLabel, passwordInput, passwordMessage } = passwordInputFunction()
 
   // Input para confirmar contraseña
-  const confirmLabel = document.createElement('label')
-  confirmLabel.setAttribute('for', 'confirmPassword')
-  confirmLabel.textContent = 'Confirmar Contraseña:'
-
-  const confirmInput = document.createElement('input')
-  confirmInput.id = 'confirmPassword'
-  confirmInput.className = 'input confirm-password'
-  confirmInput.setAttribute('type', 'password')
-  confirmInput.setAttribute('name', 'confirmPassword')
-  confirmInput.setAttribute('required', true)
-  confirmInput.setAttribute('minlength', '8')
-
-  const confirmMessage = document.createElement('span')
-  confirmMessage.id = 'confirmMessage'
-  confirmMessage.className = 'message'
+  const { confirmLabel, confirmInput, confirmMessage } = passwordConfirmInputFunction()
 
   fieldsetPassword.appendChild(passwordLabel)
   fieldsetPassword.appendChild(passwordInput)
