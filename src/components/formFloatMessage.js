@@ -7,7 +7,10 @@ const formFloatMessage = (messagecurrent, color, display) => {
   message.style.color = color
   message.onclick = () => { message.style.display = 'none' }
   document.body.appendChild(message)
-  document.body.addEventListener('click', () => { message.style.display = 'none' })
+  document.body.addEventListener('click', () => {
+    message.style.display = 'none'
+    document.getElementById('registrationForm').style.filter = 'blur(0px)'
+  })
   return message
 }
 
