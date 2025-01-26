@@ -46,8 +46,8 @@ function createForm () {
   const { button: submitButton } = button('submit', 'btn-submit', 'Enviar')
   const { button: resetButton } = button('reset', 'btn-reset', 'Limpiar')
 
-  function recetFunction () {
-    form.style.filter = 'none'
+  function recetFunction (blur = 'none') {
+    form.style.filter = blur
     form.reset()
     validateEmail(emailInput, emailMessage, 'email')
     const countryMessage = document.getElementById('countryMessage')
@@ -75,6 +75,7 @@ function createForm () {
     e.preventDefault()
     if (isVadid.email && isVadid.country && isVadid.password && isVadid.postalCode && isVadid.confirmPassword) {
       e.stopPropagation()
+      recetFunction('blur(4px)')
       const formFloatMessage = document.getElementById('floating-message')
       formFloatMessage.style.display = 'flex'
       formFloatMessage.style.color = 'var(--success-color)'
