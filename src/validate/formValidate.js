@@ -2,6 +2,14 @@ const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
 const postalCodeRegex = /^[0-9]{4,6}$/
 
+const isVadid = {
+  email: false,
+  password: false,
+  postalCode: false,
+  country: false,
+  confirmPassword: false
+}
+
 const validateEmail = (input, message, classInput) => {
   if (input.value === '') {
     message.textContent = 'Mensaje'
@@ -16,6 +24,7 @@ const validateEmail = (input, message, classInput) => {
       message.classList.add('messageSuccess')
       input.classList.remove('borderError', 'borderSuccess', classInput)
       input.classList.add('borderSuccess')
+      isVadid.email = true
     } else {
       message.textContent = 'Email no válido'
       message.classList.remove('message', 'messageSuccess')
@@ -39,6 +48,7 @@ const validateOptionInputs = (input, message, classInput) => {
     message.classList.add('messageSuccess')
     input.classList.remove('borderError', 'borderSuccess', classInput)
     input.classList.add('borderSuccess')
+    isVadid.country = true
   }
 }
 
@@ -56,6 +66,7 @@ const validatePostalCode = (input, message, classInput) => {
       message.classList.add('messageSuccess')
       input.classList.remove('borderError', 'borderSuccess', classInput)
       input.classList.add('borderSuccess')
+      isVadid.postalCode = true
     } else {
       message.textContent = 'El código postal debe tener entre 4 y 6 dígitos numéricos'
       message.classList.remove('message', 'messageSuccess')
@@ -80,6 +91,7 @@ const validatePassword = (input, message, classInput) => {
       message.classList.add('messageSuccess')
       input.classList.remove('borderError', 'borderSuccess', classInput)
       input.classList.add('borderSuccess')
+      isVadid.password = true
     } else {
       message.textContent = 'La contraseña debe tener mayusculas, minusculas, numeros y al menos 8 caracteres'
       message.classList.remove('message', 'messageSuccess')
@@ -104,6 +116,7 @@ const validatePasswordConfirm = (confirmInput, inputPassword, message, classInpu
       message.classList.add('messageSuccess')
       confirmInput.classList.remove('borderError', 'borderSuccess', classInput)
       confirmInput.classList.add('borderSuccess')
+      isVadid.confirmPassword = true
     } else {
       message.textContent = 'Las contraseñas no coinciden'
       message.classList.remove('message', 'messageSuccess')
@@ -114,4 +127,4 @@ const validatePasswordConfirm = (confirmInput, inputPassword, message, classInpu
   }
 }
 
-export { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm }
+export { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm, isVadid }
