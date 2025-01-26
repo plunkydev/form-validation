@@ -1,4 +1,4 @@
-import { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm } from '../validate/formValidate.js'
+import { validateEmail, validateOptionInputs, validatePostalCode, validatePassword, validatePasswordConfirm, isVadid } from '../validate/formValidate.js'
 import { emailInputFunction } from '../components/emailComponent.js'
 import { fieldSetComponent } from '../components/fieldSetComponent.js'
 import { selectElementFunction } from '../components/selectComponent.js'
@@ -46,8 +46,8 @@ function createForm () {
   const { button: submitButton } = button('submit', 'btn-submit', 'Enviar')
   const { button: resetButton } = button('reset', 'btn-reset', 'Limpiar')
 
-  resetButton.addEventListener('click', (e) => {
-    e.preventDefault()
+  function recetFunction () {
+    form.style.filter = 'none'
     form.reset()
     validateEmail(emailInput, emailMessage, 'email')
     const countryMessage = document.getElementById('countryMessage')
@@ -61,12 +61,36 @@ function createForm () {
     validatePassword(passwordInput, passwordMessage, 'password')
     validatePostalCode(postalInput, postalMessage, 'postalCode')
     validatePasswordConfirm(confirmInput, passwordInput, confirmMessage, 'confirm-password')
+  }
+
+  resetButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    recetFunction()
   })
 
   // Agregar validación en tiempo real-------------------------------------------------------------------------------------------------------------
 
   submitButton.addEventListener('click', (e) => {
+    form.style.filter = 'blur(4px)'
     e.preventDefault()
+    if (isVadid.email && isVadid.country && isVadid.password && isVadid.postalCode && isVadid.confirmPassword) {
+      e.stopPropagation()
+      const formFloatMessage = document.getElementById('floating-message')
+      formFloatMessage.style.display = 'flex'
+      formFloatMessage.style.color = 'var(--success-color)'
+      formFloatMessage.style.border = '1px solid var(--success-color)'
+      formFloatMessage.style.boxShadow = '0 0 7px var(--success-color)'
+      formFloatMessage.textContent = 'Formulario enviado'
+      form.reset()
+    } else {
+      e.stopPropagation()
+      const formFloatMessage = document.getElementById('floating-message')
+      formFloatMessage.style.display = 'flex'
+      formFloatMessage.style.color = 'var(--error-color)'
+      formFloatMessage.style.border = '1px solid var(--error-color)'
+      formFloatMessage.style.boxShadow = '0 0 7px var(--error-color)'
+      formFloatMessage.textContent = 'Rellene todos los campos'
+    }
   })
 
   emailInput.addEventListener('input', () => {
